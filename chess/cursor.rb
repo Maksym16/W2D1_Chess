@@ -34,7 +34,7 @@ MOVES = {
 
 class Cursor
 
-  attr_reader :cursor_pos, :board
+  attr_reader :cursor_pos, :board, :selected
 
   def initialize(cursor_pos, board)
     @cursor_pos = cursor_pos
@@ -96,13 +96,16 @@ class Cursor
     @cursor_pos 
     movement_instr = MOVES[diff]
      
-    idx1 = @cursor_pos[0] += movement_instr[0]
-    idx2 = @cursor_pos[1] += movement_instr[1]
+    idx1 = @cursor_pos[0] + movement_instr[0]
+    idx2 = @cursor_pos[1] + movement_instr[1]
     temp_pos = [idx1, idx2]
-    if board.valid_move(temp_pos)
-      temp_pos
+    # debugger
+    if @board.valid_move(temp_pos)
+      @cursor_pos = temp_pos
     else 
       @cursor_pos
+      
     end
   end
+
 end

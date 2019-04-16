@@ -18,7 +18,11 @@ class Display
             row_string = "#{i} "
             (0..7).each do |i2|
                 if @cursor.cursor_pos == [i, i2]
-                    row_string += "#{row[i2].symbol} ".colorize(:blue)
+                    if @cursor.selected == false
+                        row_string += "#{row[i2].symbol} ".colorize(:blue)
+                    else
+                        row_string += "#{row[i2].symbol} ".colorize(:red)
+                    end
                 else
                     row_string += "#{row[i2].symbol} "
                 end
